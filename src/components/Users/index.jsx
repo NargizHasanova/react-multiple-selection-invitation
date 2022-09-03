@@ -1,10 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import {
-  filterUsers,
-  sendInvitation,
-  setSearchingName,
-} from '../../redux/userSlice'
+import { sendInvitation,sendAndBackBtns, setSearchingName } from '../../redux/userSlice'
 import { Skeleton } from './Skeleton'
 import { User } from './User'
 
@@ -47,7 +43,10 @@ export const Users = () => {
       )}
 
       <button
-        onClick={() => dispatch(sendInvitation())}
+        onClick={() => {
+          dispatch(sendInvitation())
+          dispatch(sendAndBackBtns())
+        }}
         className="send-invite-btn"
       >
         Отправить приглашение

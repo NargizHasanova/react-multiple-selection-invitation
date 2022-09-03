@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Success } from './components/Success';
 import { Users } from './components/Users';
 import { fetchUsersData } from './redux/userSlice';
@@ -8,15 +8,15 @@ import { fetchUsersData } from './redux/userSlice';
 
 function App() {
   const dispatch = useDispatch()
+  const { successOnSend } = useSelector(state => state.users)
 
   useEffect(() => {
     dispatch(fetchUsersData())
   }, []);
-  
+
   return (
     <div className="App">
-      <Users />
-      {/* <Success /> */}
+      {successOnSend ? <Success /> : <Users />}
     </div>
   );
 }

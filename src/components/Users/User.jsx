@@ -4,7 +4,7 @@ import { switchBtn } from '../../redux/userSlice'
 
 export const User = () => {
   const dispatch = useDispatch()
-  const { data, searchingName } = useSelector((state) => state.users)
+  const { data, searchingName  } = useSelector((state) => state.users)
 
   return data.map((item) => {
     if (

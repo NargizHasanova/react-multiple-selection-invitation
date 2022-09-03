@@ -10,11 +10,11 @@ export const fetchUsersData = createAsyncThunk("users/fetchUsers",
 
 const initialState = {
     data: [],
-    filteredUsersData: [],
     pendingGet: false,
     errorGet: false,
     searchingName: '',
-    selectedForInvitation: []
+    selectedForInvitation: [],
+    successOnSend: false,
 }
 
 export const counterSlice = createSlice({
@@ -41,9 +41,9 @@ export const counterSlice = createSlice({
                 return item
             })
         },
-        // addToInvitation: (state, { payload }) => {
-
-        // },
+        sendAndBackBtns: (state) => {
+            state.successOnSend = !state.successOnSend
+        },
     },
     extraReducers: {
         [fetchUsersData.pending]: (state) => {
@@ -54,8 +54,6 @@ export const counterSlice = createSlice({
             console.log('fulfilled');
             state.pendingGet = false
             state.data = payload
-            state.filteredUsersData = payload
-
         },
         [fetchUsersData.rejected]: (state, action) => {
             console.log('rejected');
@@ -65,6 +63,6 @@ export const counterSlice = createSlice({
     }
 })
 
-export const { setSearchingName, switchBtn, addToInvitation, sendInvitation, incrementByAmount } = counterSlice.actions
+export const { setSearchingName, switchBtn, addToInvitation, sendInvitation, incrementByAmount, sendAndBackBtns } = counterSlice.actions
 
 export default counterSlice.reducer
